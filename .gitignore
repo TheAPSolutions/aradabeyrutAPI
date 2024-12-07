@@ -1,0 +1,13 @@
+# Ignore Visual Studio temporary files, build results, and log files
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.log
+
+# Ignore ASP.NET Core publish folder
+/publish/
+
+# Ignore dependencies
+/packages/
