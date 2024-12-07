@@ -1,6 +1,7 @@
 ﻿using AradaAPI.Data;
 using AradaAPI.Models;
 using AradaAPI.Models.DTO.CategoriesDTO;
+using AradaAPI.Models.DTO.CategoriesDTO.MenuAppAPI.Models.DTO.CategoriesDTO;
 using AradaAPI.Repositories.Interface;
 using Azure.Core;
 using Microsoft.AspNetCore.Authorization;
@@ -327,6 +328,29 @@ namespace AradaAPI.Controllers
             }).ToList();
 
             return Ok(filredcategories);
+        }
+
+        [HttpGet("order")]
+        public async Task<IActionResult> GetCategoriestoOrder()
+        {
+            var categories = await _categoriesRepository.GetAllAsync();
+            var filtredCategories = categories.Where(c => c.IsVisible).ToList();
+
+            if (filtredCategories.Any())
+            {
+                var orderedCategories = filtredCategories.Select(s => new OrderCategoriesDTO
+                {
+                    id = s.Id,
+                    categoryName = s.NameEn,
+                    orderNumber = s.CategoryOrder
+                }).ToList();
+
+                return Ok(orderedCategories);
+            }
+            else
+            {
+                return BadRequest("No visible categories found.");
+            }
         }
 
     }
