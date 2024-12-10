@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
+﻿
 using AradaAPI.Models.DTO.AzureDTO;
-using Microsoft.AspNetCore.Http;
 
 public class BlobService
 {
@@ -56,7 +53,7 @@ public class BlobService
             }
 
             // Generate the full URL with the base URL
-            string baseUrl = "https://apsolutionsapi.online";
+            string baseUrl = "https://arada-group.xyz";
             string relativeUrl = $"/images/{fileName}";
             response.Blob.Uri = $"{baseUrl}{relativeUrl}";
             response.Blob.Name = fileName;
