@@ -27,9 +27,9 @@
 
         public string categoryName { get; set; } = string.Empty;
 
-        public string videoUrlTr { get; set; } = string.Empty;
-        public string videoUrlEn { get; set; } = string.Empty;
-        public string videoUrlAr { get; set; } = string.Empty;
+        public string? videoUrlTr { get; set; }
+        public string? videoUrlEn { get; set; }
+        public string? videoUrlAr { get; set; }
 
 
     }
