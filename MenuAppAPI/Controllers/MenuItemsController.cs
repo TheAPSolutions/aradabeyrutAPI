@@ -296,11 +296,11 @@ namespace AradaAPI.Controllers
                 categoryId = item.categoryId,
                 isVisible = item.isVisible,
                 ItemOrder = item.ItemOrder,
-                videoUrlAr = item.Video.videoUrlAr ?? null,
-                videoUrlEn = item.Video.videoUrlEn ?? null,
-                videoUrlTr = item.Video.videoUrlTr ?? null,
-
+                videoUrlAr = item.Video?.videoUrlAr ?? "",
+                videoUrlEn = item.Video?.videoUrlEn ?? "",
+                videoUrlTr = item.Video?.videoUrlTr ?? "",
             }).ToList();
+
 
             // Return paginated response
             return Ok(response);

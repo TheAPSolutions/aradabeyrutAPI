@@ -35,7 +35,7 @@ namespace AradaAPI.Repositories.Implementation
 
         public async Task<IEnumerable<Coupons>> GetCoupons()
         {
-            var coupons =  await appDbContext.Coupons.ToListAsync();
+            var coupons =  await appDbContext.Coupons.Include(c => c.menuItem).ToListAsync();
             if (coupons.Any() && coupons != null)
             {
                 return coupons;

@@ -10,10 +10,12 @@ namespace AradaAPI.Controllers
     public class CouponsController : Controller
     {
         private readonly ICouponsRepository couponsRepository;
+        private readonly IMenuItemesRepository menuItemesRepository;
 
-        public CouponsController(ICouponsRepository couponsRepository)
+        public CouponsController(ICouponsRepository couponsRepository, IMenuItemesRepository menuItemesRepository)
         {
             this.couponsRepository = couponsRepository;
+            this.menuItemesRepository = menuItemesRepository;
         }
 
 
@@ -34,16 +36,18 @@ namespace AradaAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> addCoupon([FromBody] AddCouponsRequestDTO request)
         {
+            var item = await menuItemesRepository.GetMenuItemById(request.menuItemID);
             var coupon = new Coupons
             {
                 couponCode = request.couponCode,
                 afterDiscountPrice = request.afterDiscountPrice,
-                isActive = true
+                isActive = true,
+                menuItem = item
             };
 
             await couponsRepository.AddCoupon(coupon);
 
-            return Ok(coupon);
+            return Ok();
 
         }
 
