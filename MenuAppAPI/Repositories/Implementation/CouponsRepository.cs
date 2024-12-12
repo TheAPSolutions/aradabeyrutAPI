@@ -53,5 +53,12 @@ namespace AradaAPI.Repositories.Implementation
             }
             return false;
         }
+
+        public async Task<Coupons?> GetCouponByMenuItemId(int menuItemId)
+        {
+            return await appDbContext.Coupons
+                .Include(c => c.menuItem)
+                .FirstOrDefaultAsync(c => c.menuItem.Id == menuItemId);
+        }
     }
 }
