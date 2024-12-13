@@ -1,12 +1,14 @@
 ﻿using AradaAPI.Models;
 using AradaAPI.Models.DTO.CouponsDTO;
 using AradaAPI.Repositories.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AradaAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Roles = "Admin")]
     public class CouponsController : Controller
     {
         private readonly ICouponsRepository couponsRepository;
@@ -20,6 +22,7 @@ namespace AradaAPI.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> getCoupons()
         {
             var coupons = await couponsRepository.GetCoupons();
@@ -34,6 +37,7 @@ namespace AradaAPI.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> addCoupon([FromBody] AddCouponsRequestDTO request)
         {
             // Check if a coupon for the menuItem exists and is active
@@ -69,6 +73,7 @@ namespace AradaAPI.Controllers
 
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> updateStatus(int id)
         {
             var result = await couponsRepository.updateStatus(id);

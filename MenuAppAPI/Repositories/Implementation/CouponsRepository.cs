@@ -45,10 +45,11 @@ namespace AradaAPI.Repositories.Implementation
 
         public async Task<bool> updateStatus(int id)
         {
-          var coupon = await appDbContext.Coupons.FirstOrDefaultAsync(c => c.couponID == id);
-          if(coupon != null)
+            var coupon = await appDbContext.Coupons.FirstOrDefaultAsync(c => c.couponID == id);
+            if (coupon != null)
             {
                 coupon.isActive = !coupon.isActive;
+                await appDbContext.SaveChangesAsync(); // Save the changes to the database
                 return true;
             }
             return false;
