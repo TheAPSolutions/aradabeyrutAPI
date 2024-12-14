@@ -8,7 +8,6 @@ namespace AradaAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(Roles = "Admin")]
     public class CouponsController : Controller
     {
         private readonly ICouponsRepository couponsRepository;
@@ -22,7 +21,6 @@ namespace AradaAPI.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> getCoupons()
         {
             var coupons = await couponsRepository.GetCoupons();
