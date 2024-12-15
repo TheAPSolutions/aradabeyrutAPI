@@ -429,5 +429,22 @@ namespace AradaAPI.Controllers
             return Ok(filredMenuItems);
         }
 
+        [HttpPost("order")]
+        [Authorize(Roles = "Admin")]
+
+        public async Task<IActionResult> UpdateMenuItemOrder([FromBody] List<OrderMenuItem> menuItems)
+        {
+            foreach (var item in menuItems)
+            {
+                var response = await menuRepository.getItem(item.Id);
+                if (response != null)
+                {
+                    response.ItemOrder = item.ItemOrder;
+                }
+            }
+            await dbContext.SaveChangesAsync();
+            return Ok();
+        }
+
     }
 }

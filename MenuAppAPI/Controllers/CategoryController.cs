@@ -353,5 +353,22 @@ namespace AradaAPI.Controllers
             }
         }
 
+        [HttpPost("order")]
+        [Authorize(Roles = "Admin")]
+
+        public async Task<IActionResult> UpdateCategoryOrder([FromBody] List<OrderCategoriesDTO> categories)
+        {
+            foreach (var category in categories)
+            {
+                var cat = await _categoriesRepository.getCategory(category.id);
+                if (cat != null)
+                {
+                    cat.CategoryOrder = category.orderNumber;
+                }
+            }
+            await dbcontext.SaveChangesAsync();
+            return Ok();
+        }
+
     }
 }

@@ -12,5 +12,8 @@ namespace AradaAPI.Repositories.Interface
 
         Task<bool> updateStatus(int id);
 
+        Task<Coupons?> GetCouponByMenuItemId(int menuItemId);
+
+
     }
 }
