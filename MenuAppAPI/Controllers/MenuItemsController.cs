@@ -99,7 +99,7 @@ namespace AradaAPI.Controllers
             string imageUrlString;
             if (request.imageUrl == null || request.imageUrl.Length <= 0)
             {
-                imageUrlString = "https://apsolutionsapi.online/images/IMG_1059.PNG";
+                imageUrlString = "https://arada-group.xyz/images/IMG_1371.PNG";
             }
             else
             {
