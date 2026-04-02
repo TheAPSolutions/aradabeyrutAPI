@@ -14,7 +14,6 @@ namespace AradaAPI.Data
         public DbSet<Branch> Branch { get; set; }
         public DbSet<Videos> Videos { get; set; }
         public DbSet<Coupons> Coupons { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
